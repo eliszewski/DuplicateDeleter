@@ -16,8 +16,7 @@ public abstract class DuplicateDeleter<T> implements DuplicateDeleterInterface<T
     //implement a getNumOfOcc
     public int getNumOfOcc(T valueToCheck){
         int counter = 0;
-        for (T t: this.array
-             ) {
+        for (T t: this.array) {
             if(valueToCheck.equals(t))counter++;
         }
         return counter;

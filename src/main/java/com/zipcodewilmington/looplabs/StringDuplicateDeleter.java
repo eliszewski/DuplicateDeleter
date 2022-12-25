@@ -1,6 +1,7 @@
 package com.zipcodewilmington.looplabs;
 
 import java.util.Arrays;
+import java.util.stream.Collectors;
 
 /**
  * Created by leon on 1/28/18.
@@ -13,29 +14,11 @@ public final class StringDuplicateDeleter extends DuplicateDeleter<String> {
 
     @Override
     public String[] removeDuplicates(int maxNumberOfDuplications) {
-        String[] removed = new String[this.array.length];
-        int counter = 0;
-        for (String i: this.array
-        ) {
-            if(getNumOfOcc(i) < maxNumberOfDuplications){
-                removed[counter] = i;
-                counter++;
-            }
-        }
-        return Arrays.copyOf(removed, counter);
+        return Arrays.stream(this.array).filter(e -> getNumOfOcc(e) < maxNumberOfDuplications).toArray(String[]::new);
     }
 
     @Override
     public String[] removeDuplicatesExactly(int exactNumberOfDuplications) {
-        String[] removed = new String[this.array.length];
-        int counter = 0;
-        for (String i: this.array
-        ) {
-            if(getNumOfOcc(i) != exactNumberOfDuplications){
-                removed[counter] = i;
-                counter++;
-            }
-        }
-        return Arrays.copyOf(removed, counter);
+        return Arrays.stream(array).filter(e -> getNumOfOcc(e) != exactNumberOfDuplications).toArray(String[]::new);
     }
 }
